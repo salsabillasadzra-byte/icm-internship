@@ -420,8 +420,15 @@
 
     // ALIAS LOGIN: username akan diubah menjadi email internal
     const LOGIN_DOMAIN = "icm.sch.id";
-    const loginEmail = (username) =>
-        `${username.trim().toLowerCase()}@${LOGIN_DOMAIN}`;
+    const loginEmail = (username) => {
+    const cleanUsername = username.trim().toLowerCase();
+
+    if (cleanUsername === "admin") {
+        return "salsabilla.shafa@icm.sch.id";
+    }
+
+    return `${cleanUsername}@${LOGIN_DOMAIN}`;
+};
 
     let currentUser = null;
 
