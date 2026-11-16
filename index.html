@@ -419,16 +419,26 @@
     const auth = getAuth(app);
 
     // ALIAS LOGIN: username akan diubah menjadi email internal
-    const LOGIN_DOMAIN = "icm.sch.id";
-    const loginEmail = (username) => {
+    
+const LOGIN_DOMAIN = "icm.sch.id";
+
+const loginEmail = (username) => {
     const cleanUsername = username.trim().toLowerCase();
 
+    // Akun Admin
     if (cleanUsername === "admin") {
         return "salsabilla.shafa@icm.sch.id";
     }
 
+    // Jika pengguna memasukkan email lengkap
+    if (cleanUsername.includes("@")) {
+        return cleanUsername;
+    }
+
+    // Jika pengguna memasukkan username saja
     return `${cleanUsername}@${LOGIN_DOMAIN}`;
 };
+
 
     let currentUser = null;
 
